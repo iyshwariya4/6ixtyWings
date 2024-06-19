@@ -39,6 +39,24 @@ def collectionsview(request, slug):
         context = {'products' : products, 'category_name':category_name}
         return render(request, "products/index.html", context)
     else:
+
+        messages.warning(request, "No such category was found.")
+        return redirect('collections.html')
+
+def productview(request, cate_slug, prod_slug):
+    if(Category.objects.filter(slug=cate_slug, status=0)):
+        if(Product.objects.filter(slug=prod_slug, status=0)):
+            products = Product.objects.filter(slug=prod_slug, status=0).first
+            context = {'products' : products,}
+        else:
+              messages.warning(request, "No such product was found.")    
+              return redirect('collections.html')
+    else:
+        messages.warning(request, "No such category was found.")    
+        return redirect('collections.html')
+    return render(request, "products/view.html", context)
+  
         messages.warning(request, "no such products")
         return redirect('collections.html')
+
 
