@@ -39,6 +39,7 @@ def collectionsview(request, slug):
         context = {'products' : products, 'category_name':category_name}
         return render(request, "products/index.html", context)
     else:
+
         messages.warning(request, "No such category was found.")
         return redirect('collections.html')
 
@@ -54,3 +55,8 @@ def productview(request, cate_slug, prod_slug):
         messages.warning(request, "No such category was found.")    
         return redirect('collections.html')
     return render(request, "products/view.html", context)
+  
+        messages.warning(request, "no such products")
+        return redirect('collections.html')
+
+

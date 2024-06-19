@@ -9,7 +9,11 @@
                 {% for item in products %}
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
+
                         <a href="{% url 'productview' item.category.slug item.slug%}">
+
+                        <a href="#">
+
                             <img src="{{ item.product_image.url }}" class="card-img-top" alt="Product Image">
                         </a>
                         <div class="card-body">
